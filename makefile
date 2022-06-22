@@ -1,26 +1,25 @@
-ALL = Code2 Code2.o pole.o obj.o biblioO.a biblioObj.so
+ALL = Code2 Code2.o pole.o obj.o biblioO.a biblioObj.so 
+.PHONY: clean
 
 all: $(ALL)
 
-.c.o: 
+%bj.o: 
 	gcc -fPIC -c $<
-.o:
-	gcc -o $@ $^	
-Code2.o: Code2.c
+%le.o: 
 	gcc -c $<
-
-obj.o: obj.c
-	gcc -fPIC -c $<
-
-pole.o: pole.c
+%e2.o: 
 	gcc -c $<
-Code2: Code2.o biblioO.a biblioObj.so
-biblioO.a: pole.o
+%le.a: 
 	ar rs $@ $<
-
+%bj.so: 
+	gcc -shared -o $@ $<
+%e2:
+	gcc -o $@ $^	
+Code2.o: Code2.c biblioObj.h biblioO.h
+obj.o: obj.c
+pole.o: pole.c
+biblioO.a: pole.o
 biblioObj.so: obj.o
-	gcc -shared -o $@ $<
-
 Code2: Code2.o biblioO.a biblioObj.so
-	gcc -o $@ $^
-	gcc -shared -o $@ $<
+clean:
+	rm -f Code2 *.o *.a *.so
