@@ -1,0 +1,1 @@
+void obj(int x);
